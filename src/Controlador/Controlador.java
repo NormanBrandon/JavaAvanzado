@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import Vista.Interfaz;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 
 /**
  *
@@ -23,15 +24,18 @@ import java.awt.event.ActionListener;
 public class Controlador implements ActionListener{
      public Interfaz vista ;
      public  Modelo modelo = new Modelo();
+     public DefaultTableModel tabla = new DefaultTableModel(); 
     
     public Controlador(Interfaz vista){
        
         ///////////////////////////////////Conectamos con la base de datos en el contructor
         Connection conn;
         PreparedStatement ps;
+        Conexion servidor = new Conexion("jdbc:mysql://localhost/prueba","root","Conan@1234");
        
-        Conexion.cargar();
-        conn = Conexion.conectar("jdbc:mysql://localhost/prueba","root","Conan@1234");
+        servidor.cargar();
+        conn = servidor.conectar();
+        modelo.setCon(conn);
         ///////////////////////////////////
         
          this.vista = vista;
@@ -49,9 +53,15 @@ public class Controlador implements ActionListener{
         this.vista.search5.setActionCommand("biggest");
       
         //añade e inicia el jtable con un DefaultTableModel vacio
-     //   this.vista.__tabla.addMouseListener(this);
-     vista.texto.setText("hola2");
-       // this.vista.__tabla.setModel( new DefaultTableModel() );
+     //  this.vista.__tabla.addActionListener(this);
+     Object[][] datos = {
+    {"Juan", new Integer(25), new Boolean(false)},
+    {"Sonia", new Integer(33), new Boolean(true) },
+    {"Pedro", new Integer(42), new Boolean(false)},
+    };
+    String[] columnNames = {"Nombre","Años","Apto",};
+    tabla.setDataVector(datos, columnNames);
+       this.vista.__tabla.setModel(tabla);
     }
     
     
@@ -65,16 +75,16 @@ public class Controlador implements ActionListener{
             case "allclient":
                 //obtiene del modelo los registros en un DefaultTableModel y lo asigna en la vista
                  vista.texto.setText("hola3");
-                JOptionPane.showMessageDialog(vista,"Error: .");
+              //  JOptionPane.showMessageDialog(vista,"Error: .");
                 break;
             case "allfact":
                 //añade un nuevo registro
-               
+               modelo.getClients();
              
-                    JOptionPane.showMessageDialog(vista,"Error: Los datos son incorrectos.");
+                //    JOptionPane.showMessageDialog(vista,"Error: Los datos son incorrectos.");
                 break;
             case "clientvehicle":
-               JOptionPane.showMessageDialog(vista,"incorrectos.");
+               JOptionPane.showMessageDialog(vista,"Boton 3 presionado");
                 break;       
         }
 

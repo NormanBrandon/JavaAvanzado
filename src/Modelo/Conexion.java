@@ -14,6 +14,13 @@ import java.sql.SQLException;
  * @author Diego
  */
 public class Conexion {
+    public String url,username,password;
+    public Conexion(String url,String username,String password){
+     this.url=url;
+     this.username=username;
+     this.password=password;
+    }
+
     public static void cargar() {
         try {
             Class.forName("com.mysql.jdbc.Driver");       //Para agregar el Driver
@@ -21,13 +28,14 @@ public class Conexion {
         } catch (Exception e) {
             System.out.println("Nel"+e.getMessage());
         }
+       
     }
     
-    public static Connection conectar(String url, String username, String password) {
+    public Connection conectar() {
         Connection conn = null;
         
         try {
-            conn = DriverManager.getConnection(url, username, password);
+            conn = DriverManager.getConnection(this.url,this.username,this.password);
             System.out.println("Conexión a base realizada");
         } catch (SQLException e) {
             System.out.println("Nel"+e.getMessage());
