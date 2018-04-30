@@ -51,6 +51,10 @@ public class Controlador implements ActionListener{
         this.vista.search7.setActionCommand("search7");
         this.vista.Up1.addActionListener(this);
         this.vista.Up1.setActionCommand("Up1");
+        this.vista.Up2.addActionListener(this);
+        this.vista.Up2.setActionCommand("Up2");
+        this.vista.Up3.addActionListener(this);
+        this.vista.Up3.setActionCommand("Up3");
        this.vista.__tabla.setModel(tabla);
     }
     
@@ -111,7 +115,12 @@ public class Controlador implements ActionListener{
              case "Up1":
               modelo.upDir(vista.UpNombre.getText(),vista.UpDir.getText());
                  break;
-            
+            case "Up2":
+              modelo.upFact(vista.UpCosto.getText(),vista.UpFact.getText());
+                 break;
+            case "Up3":
+              modelo.upVehicle(vista.UpMarca.getText(),vista.UpModel.getText(),vista.UpPlaca.getText());
+                 break;
         }
 
 }

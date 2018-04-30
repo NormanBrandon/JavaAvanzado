@@ -40,16 +40,23 @@ public class Interfaz extends javax.swing.JFrame {
         search6 = new javax.swing.JButton();
         search7 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        UpPlaca = new javax.swing.JTextField();
         Up1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        Up3 = new javax.swing.JButton();
+        Up2 = new javax.swing.JButton();
+        UpMarca = new javax.swing.JTextField();
         UpDir = new javax.swing.JTextField();
         UpNombre = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        UpCosto = new javax.swing.JTextField();
+        UpFact = new javax.swing.JTextField();
+        UpModel = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,23 +120,44 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(search7, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 230, -1, -1));
 
         jLabel2.setText("Actualizaciones");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, 160, 30));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 410, 150, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 160, 30));
+        jPanel1.add(UpPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 450, 150, -1));
 
         Up1.setText("Actualizar direccion de cliente");
-        jPanel1.add(Up1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
+        jPanel1.add(Up1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, -1, -1));
 
-        jButton2.setText("Actualizar Marcoa y/o modelo de Vehiculo");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 450, -1, -1));
+        Up3.setText("Actualizar Marcoa y/o modelo de Vehiculo");
+        jPanel1.add(Up3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 500, -1, -1));
 
-        jButton3.setText("Actualizar costo de una factura");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 450, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 330, 150, -1));
-        jPanel1.add(UpDir, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 150, -1));
-        jPanel1.add(UpNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 150, -1));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 150, -1));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 150, -1));
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 370, 150, 30));
+        Up2.setText("Actualizar costo de una factura");
+        jPanel1.add(Up2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 500, -1, -1));
+        jPanel1.add(UpMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 330, 150, -1));
+        jPanel1.add(UpDir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 150, -1));
+        jPanel1.add(UpNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 150, -1));
+        jPanel1.add(UpCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, 150, -1));
+        jPanel1.add(UpFact, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 150, -1));
+        jPanel1.add(UpModel, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 390, 150, 30));
+
+        jLabel3.setText("Monto de Factura");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, -1, -1));
+
+        jLabel4.setText("Monto Nuevo");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, -1, -1));
+
+        jLabel5.setText("Nombre de cliente");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
+
+        jLabel6.setText("Nueva Direccion");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
+
+        jLabel7.setText("Marca de Vehiculo");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 300, -1, -1));
+
+        jLabel8.setText("Modelo De Vehiculo");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 370, -1, -1));
+
+        jLabel9.setText("Placa de Vehiculo");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,7 +167,9 @@ public class Interfaz extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -194,20 +224,27 @@ public class Interfaz extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton Up1;
+    public javax.swing.JButton Up2;
+    public javax.swing.JButton Up3;
+    public javax.swing.JTextField UpCosto;
     public javax.swing.JTextField UpDir;
+    public javax.swing.JTextField UpFact;
+    public javax.swing.JTextField UpMarca;
+    public javax.swing.JTextField UpModel;
     public javax.swing.JTextField UpNombre;
+    public javax.swing.JTextField UpPlaca;
     public javax.swing.JTable __tabla;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     public javax.swing.JButton search1;
     public javax.swing.JButton search2;
     public javax.swing.JButton search3;

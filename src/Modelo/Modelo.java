@@ -218,5 +218,42 @@ public String[][] getDates(){
         
         
         }
+   public void upFact(String monto,String id){
+        //Update cliente Set Dirección = 'nueva_dirección'  Where Nombre='Mike';
+           double prima,poliza;
+         try{
+         stm = conn.createStatement();
+         stm.executeUpdate("UPDATE Factura SET Monto = '"+monto+"'  WHERE Monto='"+id+"'");
+         //rs = stm.getResultSet();
+         poliza = ((Integer.parseInt(monto))*0.005558333);
+         prima=(Integer.parseInt(monto))*0.85;
+             System.out.println(prima);
+             System.out.println(poliza);
+          System.out.println("Actualizacion exitosa: ");
+         
+      }catch(SQLException e){
+         System.err.println( e.getMessage() );
+      }
+        
+        
+        }
+      public void upVehicle(String marca,String model,String placa){
+        //Update cliente Set Dirección = 'nueva_dirección'  Where Nombre='Mike';
+           
+         try{
+         stm = conn.createStatement();
+         if(marca!=""){
+         stm.executeUpdate("UPDATE Vehiculo SET Marca = '"+marca+"'  WHERE Id_Placas='"+placa+"'");}
+         if(model!=""){
+         stm.executeUpdate("UPDATE Vehiculo SET Modelo = '"+model+"'  WHERE Id_Placas='"+placa+"'");}
 
+       
+          System.out.println("Actualizacion exitosa: ");
+         
+      }catch(SQLException e){
+         System.err.println( e.getMessage() );
+      }
+        
+        
+        }
 }
