@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<clientes>
+    <cliente id="1">
+        <nombre>Mike</nombre>
+        <direccion>Colonia Roma</direccion>
+    </cliente>
+    <cliente id="2">
+        <nombre>Goku</nombre>
+        <direccion>Ecatepec Muzquiz</direccion>
+    </cliente>
+    <cliente id="3">
+        <nombre>Mario</nombre>
+        <direccion>Tepico de chalco</direccion>
+    </cliente>
+    <cliente id="4">
+        <nombre>Bowser</nombre>
+        <direccion>Castillo de polanco</direccion>
+    </cliente>
+</clientes>

@@ -25,7 +25,7 @@ public class Controlador implements ActionListener{
         ///////////////////////////////////Conectamos con la base de datos en el contructor
         
         PreparedStatement ps;
-        servidor = new Conexion("jdbc:mysql://localhost/seguro","root","Conan@1234");
+        servidor = new Conexion("jdbc:mysql://localhost/seguro2","root","Conan@1234");
        
         servidor.cargar();
         conn = servidor.conectar();
@@ -58,8 +58,13 @@ public class Controlador implements ActionListener{
        this.vista.__tabla.setModel(tabla);
        
        modelo.setCon(servidor.conectar());
+       modelo.Tables();
+       modelo.cliente();
+       modelo.factura();
+       modelo.vehiculo();
        modelo.getReg();
        modelo.iniciar();
+       
        
     }
     

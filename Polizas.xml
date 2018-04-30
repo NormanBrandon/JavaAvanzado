@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<polizas>
+    <poliza id="1">
+        <Id_Cliente>1</Id_Cliente>
+        <Id_Placas>1</Id_Placas>
+        <Costo>0</Costo>
+        <Prima_Asegurada>0</Prima_Asegurada>
+        <Fecha_Apertura>2018/01/01</Fecha_Apertura>
+        <Fecha_Vencimiento>2019/01/01</Fecha_Vencimiento>
+    </poliza>
+        <poliza id="2">
+        <Id_Cliente>2</Id_Cliente>
+        <Id_Placas>2</Id_Placas>
+        <Costo>0</Costo>
+        <Prima_Asegurada>0</Prima_Asegurada>
+        <Fecha_Apertura>2018/02/01</Fecha_Apertura>
+        <Fecha_Vencimiento>2020/02/02</Fecha_Vencimiento>
+    </poliza>
+        <poliza id="3">
+        <Id_Cliente>3</Id_Cliente>
+        <Id_Placas>3</Id_Placas>
+        <Costo>0</Costo>
+        <Prima_Asegurada>0</Prima_Asegurada>
+        <Fecha_Apertura>2018/03/01</Fecha_Apertura>
+        <Fecha_Vencimiento>2021/03/03</Fecha_Vencimiento>
+    </poliza>
+        <poliza id="4">
+        <Id_Cliente>4</Id_Cliente>
+        <Id_Placas>4</Id_Placas>
+        <Costo>0</Costo>
+        <Prima_Asegurada>0</Prima_Asegurada>
+        <Fecha_Apertura>2018/04/01</Fecha_Apertura>
+        <Fecha_Vencimiento>2022/04/04</Fecha_Vencimiento>
+    </poliza>
+</polizas>

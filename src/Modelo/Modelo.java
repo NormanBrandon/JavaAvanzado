@@ -11,6 +11,13 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+import java.io.File;
 
 public class Modelo{
     public Statement stm;
@@ -85,7 +92,7 @@ public class Modelo{
          stm = conn.createStatement();
          rs=stm.executeQuery("SELECT * FROM Cliente");
          rs = stm.getResultSet();
-       
+         
           System.out.println("Consulta exitosa: ");
           
           int i=0;
@@ -342,4 +349,145 @@ public String[][] getDates(){
         
         
         }
+ public void vehiculo(){
+  try {
+
+	File fXmlFile = new File("Vehiculos.xml");
+	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+	Document doc = dBuilder.parse(fXmlFile);
+			
+	
+	doc.getDocumentElement().normalize();
+        System.out.println("\n----------------------------");
+	System.out.println("Leyento elementos de :" + doc.getDocumentElement().getNodeName());
+			
+	NodeList nList = doc.getElementsByTagName("vehiculo");
+			
+	System.out.println("----------------------------");
+
+	for (int temp = 0; temp < nList.getLength(); temp++) {
+
+		Node nNode = nList.item(temp);
+				
+		System.out.println("\n---------------");
+				
+		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+			Element eElement = (Element) nNode;
+                        stm = conn.createStatement();
+                           stm.executeUpdate("INSERT INTO `Vehiculo`(`Id_Placas`, `Marca`, `Modelo`, `Id_Factura`) VALUES ("+eElement.getElementsByTagName("placas").item(0).getTextContent()+",'"+eElement.getElementsByTagName("marca").item(0).getTextContent()+"','"+eElement.getElementsByTagName("modelo").item(0).getTextContent()+"',"+eElement.getElementsByTagName("id_factura").item(0).getTextContent()+");");
+                      
+                        
+			
+			System.out.println("placas: " + eElement.getElementsByTagName("placas").item(0).getTextContent());
+			System.out.println("marca : " + eElement.getElementsByTagName("marca").item(0).getTextContent());
+                        System.out.println("modelo : " + eElement.getElementsByTagName("modelo").item(0).getTextContent());
+                        System.out.println("id_factura: " + eElement.getElementsByTagName("id_factura").item(0).getTextContent());
+		}
+	}
+    } catch (Exception e) {
+	e.printStackTrace();
+    }
+  
+  }  
+      
+      public void factura(){
+    
+try {
+
+	File fXmlFile = new File("Facturas.xml");
+	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+	Document doc = dBuilder.parse(fXmlFile);
+			
+	
+	doc.getDocumentElement().normalize();
+        System.out.println("\n----------------------------");
+	System.out.println("Leyento elementos de :" + doc.getDocumentElement().getNodeName());
+			
+	NodeList nList = doc.getElementsByTagName("factura");
+			
+	System.out.println("----------------------------");
+
+	for (int temp = 0; temp < nList.getLength(); temp++) {
+
+		Node nNode = nList.item(temp);
+				
+		System.out.println("\n---------------");
+				
+		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+			Element eElement = (Element) nNode;
+                         stm.executeUpdate("INSERT INTO `Factura'(`Id_Factura`, `Monto`) VALUES ("+eElement.getAttribute("id")+","+eElement.getElementsByTagName("costo_total").item(0).getTextContent()+");");
+                         
+                      System.out.println("factura id : " + eElement.getAttribute("id"));
+			System.out.println("costo_total: " + eElement.getElementsByTagName("costo_total").item(0).getTextContent());
+		
+		}
+	}
+    } catch (Exception e) {
+	e.printStackTrace();
+    }    
+ 
+ }
+        public void cliente(){
+    try {
+
+	File fXmlFile = new File("Clientes.xml");
+	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+	Document doc = dBuilder.parse(fXmlFile);
+			
+	
+	doc.getDocumentElement().normalize();
+        System.out.println("\n----------------------------");
+	System.out.println("Leyento elementos de :" + doc.getDocumentElement().getNodeName());
+			
+	
+        NodeList nList = doc.getElementsByTagName("cliente");		
+	System.out.println("\n----------------------------");
+
+	for (int temp = 0; temp < nList.getLength(); temp++) {
+
+		Node nNode = nList.item(temp);
+				
+		System.out.println("\n---------------");
+				
+		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+			Element eElement = (Element) nNode;
+                         stm.executeUpdate("INSERT INTO `Cliente`(`Id_Cliente`, `Nombre`, `Direccion`) VALUES ("+eElement.getAttribute("id")+",'"+eElement.getElementsByTagName("nombre").item(0).getTextContent()+"','"+eElement.getElementsByTagName("direccion").item(0).getTextContent()+"');");
+                       
+			System.out.println("cliente id : " + eElement.getAttribute("id"));
+			System.out.println("nombre: " + eElement.getElementsByTagName("nombre").item(0).getTextContent());
+			System.out.println("direccion : " + eElement.getElementsByTagName("direccion").item(0).getTextContent());
+		
+		}
+	}
+    } catch (Exception e) {
+	e.printStackTrace();
+    }
+     
+}
+    public void Tables(){
+        //Update cliente Set Dirección = 'nueva_dirección'  Where Nombre='Mike';
+           
+         try{
+         stm = conn.createStatement();
+         stm.execute("CREATE TABLE Cliente( Id_Cliente INT NOT NULL, Direccion VARCHAR(25)  NOT NULL,Nombre VARCHAR(25) NOT NULL, PRIMARY KEY (Id_Cliente))");
+         stm.execute("CREATE TABLE Factura (Id_Factura INT NOT NULL,Monto DECIMAL NOT NULL,PRIMARY KEY (Id_Factura))");
+         stm.execute("CREATE TABLE Vehiculo (Id_Placas VARCHAR(45) NOT NULL,Marca VARCHAR(45) NOT NULL,Modelo VARCHAR(45) NOT NULL,Id_Factura INT NOT NULL,PRIMARY KEY (Id_Placas),INDEX (Id_Factura),FOREIGN KEY (Id_Factura) REFERENCES Factura(Id_Factura))");
+         stm.execute("CREATE TABLE Poliza(Id_Poliza INT NOT NULL,Costo DECIMAL(15,2) NOT NULL,Prima_Asegurada DECIMAL(15,2) NOT NULL,Fecha_Apertura DATE NOT NULL,Fecha_Vencimiento DATE NOT NULL,Id_Cliente INT NOT NULL,Id_Placas VARCHAR(45) NOT NULL,PRIMARY KEY (Id_Poliza),INDEX (Id_Cliente),INDEX (Id_Placas),FOREIGN KEY (Id_Cliente) REFERENCES Cliente(Id_Cliente),FOREIGN KEY (Id_Placas) REFERENCES Vehiculo (Id_Placas))");
+         System.out.println("Creando Tablas ");
+         
+      }catch(SQLException e){
+         System.err.println( "No se ha creado"+e.getMessage() );
+      }
+        
+        
+        }
+  
+
+
 }
