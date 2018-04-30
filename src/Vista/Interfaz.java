@@ -113,10 +113,15 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel1.setText("Ingrese el nombre de Un cliente");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, -1, 50));
 
-        search6.setText("Poliza");
+        search6.setText("Vehiculo");
         jPanel1.add(search6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, -1, -1));
 
-        search7.setText("Vehiculo");
+        search7.setText("Poliza");
+        search7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search7ActionPerformed(evt);
+            }
+        });
         jPanel1.add(search7, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 230, -1, -1));
 
         jLabel2.setText("Actualizaciones");
@@ -124,13 +129,13 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(UpPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 450, 150, -1));
 
         Up1.setText("Actualizar direccion de cliente");
-        jPanel1.add(Up1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, -1, -1));
+        jPanel1.add(Up1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, -1, -1));
 
         Up3.setText("Actualizar Marcoa y/o modelo de Vehiculo");
         jPanel1.add(Up3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 500, -1, -1));
 
         Up2.setText("Actualizar costo de una factura");
-        jPanel1.add(Up2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 500, -1, -1));
+        jPanel1.add(Up2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 520, -1, -1));
         jPanel1.add(UpMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 330, 150, -1));
         jPanel1.add(UpDir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 150, -1));
         jPanel1.add(UpNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 150, -1));
@@ -138,7 +143,7 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(UpFact, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 150, -1));
         jPanel1.add(UpModel, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 390, 150, 30));
 
-        jLabel3.setText("Monto de Factura");
+        jLabel3.setText("Placas de Vehiculo");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, -1, -1));
 
         jLabel4.setText("Monto Nuevo");
@@ -186,6 +191,10 @@ public class Interfaz extends javax.swing.JFrame {
     private void search3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_search3ActionPerformed
+
+    private void search7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_search7ActionPerformed
 
     /**
      * @param args the command line arguments

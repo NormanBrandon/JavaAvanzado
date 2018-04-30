@@ -17,7 +17,50 @@ public class Modelo{
     public Connection conn;   
     public ResultSet rs;
     int registros;
-   
+   public void iniciar(){
+    try{
+         stm = conn.createStatement();
+         rs=stm.executeQuery("SELECT Monto,Id_Factura FROM Factura");
+         rs = stm.getResultSet();
+       
+          System.out.println("Consulta exitosa: ");
+          String[] datos = new String[this.registros];
+          String[] datos2 = new String[this.registros];          
+          String[] datos3 = new String[this.registros];          
+          double[] prima = new double[this.registros];
+          double[] poliza = new double[this.registros];
+          
+          int i=0;
+         while(rs.next()){
+             datos[i]=rs.getString("Monto");
+             datos2[i]=rs.getString("Id_Factura");
+             
+             poliza[i]=(Integer.parseInt(datos[i]))*0.0055583333;
+             prima[i]=(Integer.parseInt(datos[i]))*0.85;
+             i++;
+         }
+         System.out.println("pl");
+         for (int j = 0; j < i; j++) {
+             rs=stm.executeQuery("SELECT Id_Placas FROM Vehiculo WHERE Id_Factura='"+datos2[j]+"'");
+             rs = stm.getResultSet();
+             rs.next();
+             datos3[j]=rs.getString("Id_Placas");
+             
+             
+        }
+         
+         
+            for (int j = 0; j < i; j++) {
+         stm.executeUpdate("UPDATE Poliza SET Costo = '"+poliza[j]+"'  WHERE Id_Placas='"+datos3[j]+"'");
+         stm.executeUpdate("UPDATE Poliza SET Prima_Asegurada = '"+prima[j]+"' WHERE Id_Placas='"+datos3[j]+"'");
+        }
+         
+      }catch(SQLException e){
+         System.err.println( e.getMessage() );
+      }
+    
+    
+   }
     
     public void setCon(Connection con){
         this.conn=con;
@@ -74,7 +117,7 @@ public class Modelo{
           int i=0;
          while(rs.next()){
                 data[i][0] = rs.getString( "Id_Factura" );
-                data[i][1] = rs.getString( "Monto" );
+                data[i][1] = "$"+rs.getString( "Monto" );
                 
             i++;
          }
@@ -90,7 +133,7 @@ public class Modelo{
                 
          try{
          stm = conn.createStatement();
-         rs=stm.executeQuery("SELECT c.Nombre,p.Id_Placas, v.Modelo, p.Costo FROM Cliente as c, Poliza as p, Vehiculo as v WHERE c.Id_Cliente = p.Id_Cliente AND p.Id_Placas = v.Id_Placas;");
+         rs=stm.executeQuery("SELECT c.Nombre,p.Id_Placas, v.Modelo, q.Monto FROM Cliente as c, Poliza as p, Vehiculo as v,Factura as q WHERE c.Id_Cliente = p.Id_Cliente AND p.Id_Placas = v.Id_Placas AND q.Id_Factura=v.Id_Factura;");
          rs = stm.getResultSet();
        
           System.out.println("Consulta exitosa: ");
@@ -100,13 +143,46 @@ public class Modelo{
                 data[i][0] = rs.getString( "Nombre" );
                 data[i][1] = rs.getString( "Id_Placas" );
                 data[i][2] = rs.getString( "Modelo" );
-                data[i][3] = rs.getString( "Costo" );
+                data[i][3] ="$"+ rs.getString( "Monto" );
                 
                 
                 
                 
             i++;
          }
+         
+      }catch(SQLException e){
+         System.err.println( e.getMessage() );
+      }
+       
+    return data;
+    
+}
+      public String[][] getMayor(){
+      String[][] data = new String[1][5];
+                
+         try{
+         stm = conn.createStatement();
+         rs=stm.executeQuery("SELECT c.Nombre,p.Id_Placas, v.Modelo, q.Monto FROM Cliente as c, Poliza as p, Vehiculo as v,Factura as q WHERE c.Id_Cliente = p.Id_Cliente AND p.Id_Placas = v.Id_Placas AND q.Id_Factura=v.Id_Factura;");
+         rs = stm.getResultSet();
+       
+          System.out.println("Consulta exitosa: ");
+          
+          int i=0;
+          int mayor=0;
+         while(rs.next()){
+             if(Integer.parseInt(rs.getString( "Monto" ))>mayor){
+            mayor=Integer.parseInt(rs.getString( "Monto" ));
+             data[0][0] = rs.getString( "Nombre" );
+                data[0][1] = rs.getString( "Id_Placas" );
+                data[0][2] = rs.getString( "Modelo" );
+                data[0][3] ="$"+ rs.getString( "Monto" );   
+             }
+         } 
+        
+                   
+            
+         
          
       }catch(SQLException e){
          System.err.println( e.getMessage() );
@@ -187,8 +263,8 @@ public String[][] getDates(){
          while(rs.next()){
                 data[i][0] = rs.getString( "Nombre" );
                 data[i][1] = rs.getString( "Id_Placas" );
-                data[i][2] = rs.getString( "Costo" );
-                data[i][3] = rs.getString( "Prima_Asegurada");
+                data[i][2] = "$"+rs.getString( "Costo" );
+                data[i][3] ="$"+rs.getString( "Prima_Asegurada");
                 
                 
                     
@@ -221,12 +297,22 @@ public String[][] getDates(){
    public void upFact(String monto,String id){
         //Update cliente Set Dirección = 'nueva_dirección'  Where Nombre='Mike';
            double prima,poliza;
+           
          try{
          stm = conn.createStatement();
-         stm.executeUpdate("UPDATE Factura SET Monto = '"+monto+"'  WHERE Monto='"+id+"'");
-         //rs = stm.getResultSet();
+          rs=stm.executeQuery("SELECT Id_Factura FROM Vehiculo WHERE Id_Placas='"+id+"'");
+          
+         rs = stm.getResultSet();
+         rs.next();
+         String idf=rs.getString("Id_Factura");
+             System.out.println(rs.getString("Id_Factura"));
+         stm.executeUpdate("UPDATE Factura SET Monto = '"+monto+"'  WHERE Id_Factura='"+idf+"'");
+        
          poliza = ((Integer.parseInt(monto))*0.005558333);
          prima=(Integer.parseInt(monto))*0.85;
+         stm.executeUpdate("UPDATE Poliza SET Costo = '"+poliza+"'  WHERE Id_Placas='"+id+"'");
+         stm.executeUpdate("UPDATE Poliza SET Prima_Asegurada = '"+prima+"' WHERE Id_Placas='"+id+"'");
+        
              System.out.println(prima);
              System.out.println(poliza);
           System.out.println("Actualizacion exitosa: ");

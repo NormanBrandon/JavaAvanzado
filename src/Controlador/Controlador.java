@@ -56,6 +56,11 @@ public class Controlador implements ActionListener{
         this.vista.Up3.addActionListener(this);
         this.vista.Up3.setActionCommand("Up3");
        this.vista.__tabla.setModel(tabla);
+       
+       modelo.setCon(servidor.conectar());
+       modelo.getReg();
+       modelo.iniciar();
+       
     }
     
     
@@ -80,7 +85,7 @@ public class Controlador implements ActionListener{
                datos = new String[modelo.getReg()][5];
                modelo.setCon(servidor.conectar());
                datos = modelo.getCV();
-                String[] columnNames3 = {"Nombre","Placas","Modelo","Costo"};
+                String[] columnNames3 = {"Nombre","Placas","Modelo","Monto Factura"};
               tabla.setDataVector(datos,columnNames3);  
                 break;
             case "allfact":
@@ -121,6 +126,13 @@ public class Controlador implements ActionListener{
             case "Up3":
               modelo.upVehicle(vista.UpMarca.getText(),vista.UpModel.getText(),vista.UpPlaca.getText());
                  break;
+            case "biggest":
+                datos = new String[modelo.getReg()][5];
+               modelo.setCon(servidor.conectar());
+               datos = modelo.getMayor();
+                String[] columnNames7 = {"Nombre","Placas","Modelo","Monto Factura"};
+              tabla.setDataVector(datos,columnNames7); 
+                break;
         }
 
 }

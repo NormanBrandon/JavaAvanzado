@@ -171,7 +171,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="search6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Poliza"/>
+            <Property name="text" type="java.lang.String" value="Vehiculo"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -184,8 +184,11 @@
         </Component>
         <Component class="javax.swing.JButton" name="search7">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Vehiculo"/>
+            <Property name="text" type="java.lang.String" value="Poliza"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="search7ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
@@ -224,7 +227,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="30" y="510" width="-1" height="-1"/>
+              <AbsoluteConstraints x="30" y="470" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -250,7 +253,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="260" y="500" width="-1" height="-1"/>
+              <AbsoluteConstraints x="240" y="520" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -316,7 +319,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Monto de Factura"/>
+            <Property name="text" type="java.lang.String" value="Placas de Vehiculo"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
