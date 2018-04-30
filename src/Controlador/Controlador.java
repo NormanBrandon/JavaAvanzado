@@ -45,6 +45,12 @@ public class Controlador implements ActionListener{
            this.vista.search4.setActionCommand("dates");
        this.vista.search5.addActionListener(this);
         this.vista.search5.setActionCommand("biggest");
+        this.vista.search6.addActionListener(this);
+        this.vista.search6.setActionCommand("search6");
+        this.vista.search7.addActionListener(this);
+        this.vista.search7.setActionCommand("search7");
+        this.vista.Up1.addActionListener(this);
+        this.vista.Up1.setActionCommand("Up1");
        this.vista.__tabla.setModel(tabla);
     }
     
@@ -70,7 +76,7 @@ public class Controlador implements ActionListener{
                datos = new String[modelo.getReg()][5];
                modelo.setCon(servidor.conectar());
                datos = modelo.getCV();
-                String[] columnNames3 = {"Placas","Modelo","Marca"};
+                String[] columnNames3 = {"Nombre","Placas","Modelo","Costo"};
               tabla.setDataVector(datos,columnNames3);  
                 break;
             case "allfact":
@@ -87,7 +93,24 @@ public class Controlador implements ActionListener{
                 String[] columnNames4 = {"Numero de Poliza","Fecha de apertura","Fecha de Vencimiento"};
               tabla.setDataVector(datos,columnNames4);  
                 break;
-            
+            case "search6":
+               datos = new String[modelo.getReg()][5];
+               modelo.setCon(servidor.conectar());
+               datos = modelo.busc1(vista.texto.getText());
+                String[] columnNames5 = {"Nombre","Direccion","Placas"};
+              tabla.setDataVector(datos,columnNames5);  
+                break;
+             case "search7":
+               datos = new String[modelo.getReg()][5];
+               modelo.setCon(servidor.conectar());
+               
+               datos = modelo.busc2(vista.texto.getText());
+                String[] columnNames6 = {"Nombre","Placas","Costo Poliza","Prima Asegurada"};
+              tabla.setDataVector(datos,columnNames6);  
+                break;
+             case "Up1":
+              modelo.upDir(vista.UpNombre.getText(),vista.UpDir.getText());
+                 break;
             
         }
 
