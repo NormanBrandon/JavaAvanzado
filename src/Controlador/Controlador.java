@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Controlador;
 
 import Modelo.Conexion;
@@ -12,26 +8,24 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import Vista.Interfaz;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 
-/**
- *
- * @author vanessa-vaca1
- */
+
 public class Controlador implements ActionListener{
      public Interfaz vista ;
      public  Modelo modelo = new Modelo();
-     public DefaultTableModel tabla = new DefaultTableModel(); 
-    
-    public Controlador(Interfaz vista){
+     public DefaultTableModel tabla = new DefaultTableModel();
+     
+     public Connection conn;
+     public Conexion servidor;
+     
+     public Controlador(Interfaz vista){
        
         ///////////////////////////////////Conectamos con la base de datos en el contructor
-        Connection conn;
+        
         PreparedStatement ps;
-        Conexion servidor = new Conexion("jdbc:mysql://localhost/prueba","root","Conan@1234");
+        servidor = new Conexion("jdbc:mysql://localhost/seguro","root","Conan@1234");
        
         servidor.cargar();
         conn = servidor.conectar();
@@ -51,16 +45,6 @@ public class Controlador implements ActionListener{
            this.vista.search4.setActionCommand("dates");
        this.vista.search5.addActionListener(this);
         this.vista.search5.setActionCommand("biggest");
-      
-        //añade e inicia el jtable con un DefaultTableModel vacio
-     //  this.vista.__tabla.addActionListener(this);
-     Object[][] datos = {
-    {"Juan", new Integer(25), new Boolean(false)},
-    {"Sonia", new Integer(33), new Boolean(true) },
-    {"Pedro", new Integer(42), new Boolean(false)},
-    };
-    String[] columnNames = {"Nombre","Años","Apto",};
-    tabla.setDataVector(datos, columnNames);
        this.vista.__tabla.setModel(tabla);
     }
     
@@ -69,23 +53,42 @@ public class Controlador implements ActionListener{
     @Override
      public void actionPerformed(ActionEvent e) {
          
-             vista.texto.setText(e.getActionCommand());
+             String[][] datos = new String[10][5];
+             
     switch (e.getActionCommand())
         {
             case "allclient":
-                //obtiene del modelo los registros en un DefaultTableModel y lo asigna en la vista
-                 vista.texto.setText("hola3");
-              //  JOptionPane.showMessageDialog(vista,"Error: .");
-                break;
-            case "allfact":
-                //añade un nuevo registro
-               modelo.getClients();
+                 datos = new String[modelo.getReg()][5];
+               modelo.setCon(servidor.conectar());
+               datos = modelo.getClients();
              
+              String[] columnNames = {"Numero De Cliente","Nombre","Direccion"};
+              tabla.setDataVector(datos,columnNames);
                 //    JOptionPane.showMessageDialog(vista,"Error: Los datos son incorrectos.");
                 break;
             case "clientvehicle":
-               JOptionPane.showMessageDialog(vista,"Boton 3 presionado");
-                break;       
+               datos = new String[modelo.getReg()][5];
+               modelo.setCon(servidor.conectar());
+               datos = modelo.getCV();
+                String[] columnNames3 = {"Placas","Modelo","Marca"};
+              tabla.setDataVector(datos,columnNames3);  
+                break;
+            case "allfact":
+                 datos = new String[modelo.getReg()][5];
+               modelo.setCon(servidor.conectar());
+               datos = modelo.getFact();
+                String[] columnNames2 = {"Numero de Factura","Monto"};
+              tabla.setDataVector(datos,columnNames2);  
+                break;
+            case "dates":
+                 datos = new String[modelo.getReg()][5];
+               modelo.setCon(servidor.conectar());
+               datos = modelo.getDates();
+                String[] columnNames4 = {"Numero de Poliza","Fecha de apertura","Fecha de Vencimiento"};
+              tabla.setDataVector(datos,columnNames4);  
+                break;
+            
+            
         }
 
 }

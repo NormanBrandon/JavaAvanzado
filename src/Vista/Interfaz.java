@@ -54,48 +54,54 @@ public class Interfaz extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(__tabla);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 0, 710, 140));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 0, 760, 140));
 
-        search5.setText("Busqueda 5");
-        jPanel1.add(search5, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 110, 50));
+        search5.setText("Prima Mayor");
+        jPanel1.add(search5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, 130, 50));
 
-        search1.setText("Busqueda 1");
+        search1.setFont(new java.awt.Font("MathJax_Typewriter", 2, 12)); // NOI18N
+        search1.setText("Mostrar Clientes");
         search1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 search1ActionPerformed(evt);
             }
         });
-        jPanel1.add(search1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 110, 50));
+        jPanel1.add(search1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 140, 50));
 
-        search2.setText("Busqueda 2");
+        search2.setText("Mostrar Facturas");
+        search2.setActionCommand("allfact");
         search2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 search2ActionPerformed(evt);
             }
         });
-        jPanel1.add(search2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 110, 50));
+        jPanel1.add(search2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 140, 50));
 
-        search3.setText("Busqueda 3");
+        search3.setText("Clientes y Vehiculos");
         search3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 search3ActionPerformed(evt);
             }
         });
-        jPanel1.add(search3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 110, 50));
+        jPanel1.add(search3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 140, 50));
 
-        search4.setText("Busqueda 4");
-        jPanel1.add(search4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 110, 50));
-        jPanel1.add(texto, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 190, -1));
+        search4.setText("Vencimiento Polizas");
+        jPanel1.add(search4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 140, 50));
+        jPanel1.add(texto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 190, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 775, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
